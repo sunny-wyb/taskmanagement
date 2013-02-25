@@ -120,7 +120,7 @@ public final class tasks_jsp extends org.apache.jasper.runtime.HttpJspBase
 					.println("<a href = 'taskcontroller?command=finish&code=" + task.getCode() + "'>Finish</a>");
 			}
 			out
-					.println("<a href = 'taskcontroller?command=modify&code=" + task.getCode() + "'>Modify</a>");
+					.println("<a href = 'taskcontroller?command=getUpdatePage&code=" + task.getCode() + "'>Update</a>");
 			out
 					.println("<a href = 'taskcontroller?command=delete&code=" + task.getCode() + "'>Delete</a>");
 			if (task.isTaskpackage()) {

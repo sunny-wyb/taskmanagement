@@ -68,11 +68,11 @@ public final class create_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.print(((Map)(session.getAttribute("__CONTENT__"))).get("parentCode"));
       out.write("' />\r\n");
       out.write("\t\t\t<tr>\r\n");
-      out.write("\t\t\t\t<td>StartDate</td>\r\n");
+      out.write("\t\t\t\t<td>StartTime</td>\r\n");
       out.write("\t\t\t\t<td><input type = 'text' name = 'startTime' /></td>\r\n");
       out.write("\t\t\t</tr>\r\n");
       out.write("\t\t\t<tr>\r\n");
-      out.write("\t\t\t\t<td>EndDate</td>\r\n");
+      out.write("\t\t\t\t<td>EndTime</td>\r\n");
       out.write("\t\t\t\t<td><input type = 'text' name = 'endTime' /></td>\r\n");
       out.write("\t\t\t</tr>\r\n");
       out.write("\t\t\t<tr>\r\n");

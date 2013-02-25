@@ -12,11 +12,11 @@
 	<table>
 			<input type = 'hidden' name = 'parentCode' value = '<%=((Map)(session.getAttribute("__CONTENT__"))).get("parentCode")%>' />
 			<tr>
-				<td>StartDate</td>
+				<td>StartTime</td>
 				<td><input type = 'text' name = 'startTime' /></td>
 			</tr>
 			<tr>
-				<td>EndDate</td>
+				<td>EndTime</td>
 				<td><input type = 'text' name = 'endTime' /></td>
 			</tr>
 			<tr>

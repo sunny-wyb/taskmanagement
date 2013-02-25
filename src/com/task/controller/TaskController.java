@@ -307,6 +307,83 @@ public class TaskController extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
+			else if ("getUpdatePage".equals(command)) {
+				int code = Integer.parseInt(request.getParameter("code"));
+				TaskService service = TaskServiceFactory.getTaskService();
+				Map content = new HashMap();
+				try {
+					Task task = service.getTask(code);
+					content.put("code", task.getCode());
+					content.put("startTime", task.getStartTime());
+					content.put("endTime", task.getEndTime());
+					content.put("taskType", task.getTaskType());
+					content.put("description", task.getDescription());
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				try {
+					HttpSession session = request.getSession();
+					session.setAttribute("__CONTENT__", content);
+					request.getRequestDispatcher("web/update.jsp").forward(request , response);
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else if ("updateTask".equals(command)) {
+				int code = Integer.parseInt(request.getParameter("code"));
+				Timestamp startTime = Timestamp.valueOf(request.getParameter("startTime"));
+				Timestamp endTime = Timestamp.valueOf(request.getParameter("endTime"));
+				int taskType = Integer.parseInt(request.getParameter("taskType"));
+				String description = request.getParameter("description");
+				TaskService service = TaskServiceFactory.getTaskService();
+				Task task = null;
+				try {
+					task = service.getTask(code);
+					task.setStartTime(startTime);
+					task.setEndTime(endTime);
+					task.setTaskType(taskType);
+					task.setDescription(description);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				int parentCode = 2;
+				if (task != null) {
+					try {
+						service.saveTask(task);
+						parentCode = task.getParentCode();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+				
+				try {
+					response.sendRedirect("taskcontroller?command=getTask&parentCode="
+							+ parentCode);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		} else {
 			if (isMultipart) {
 				TaskService service = TaskServiceFactory.getTaskService();

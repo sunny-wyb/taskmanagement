@@ -18,6 +18,12 @@ public interface Task {
 	public boolean isFinished();
 	public Timestamp getFinishTime();
 	
+	public void setStartTime(Timestamp startTimestamp);
+	public void setEndTime(Timestamp endTimestamp);
+	public void setTaskType(int taskType);
+	public void setDescription(String description);
+	
+	
 	public void setFinished(boolean isFinished);
 	public void setFinishTime(Timestamp finishTime);
 }
